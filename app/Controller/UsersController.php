@@ -33,7 +33,6 @@ class UsersController extends AppController {
 	public $components = array('Paginator');
 
 	public function beforeFilter(){
-		//$this->Auth->allow('add');
 		$this->Auth->allow('register', 'google_login', 'googlelogin', 'forgotPassword' );
 		parent::beforeFilter();
 	}
@@ -41,23 +40,23 @@ class UsersController extends AppController {
 	public function forgotPassword(){
 		//$this->layout('login');
 		if( !empty( $this->request->data ) ){
-				$email =  $this->request->data['User']['email'];
-				$password = $this->randomPassword();
-				$password1 = $this->Auth->password( $password );
-				$this->User->query("UPDATE users SET password = '$password1' WHERE email = '$email'");
-				$to = $email;
-				$subject = "New Password Request";
-				$txt = "Your New Password: ".$password;
-				$headers = "From: thaibm.uet@gmail.com";
-				
-				if( mail($to,$subject,$txt,$headers) ){
-					$this->Session->setFlash(FORGET_PASSWORD_SUCCESS, 'default', array( 'class' => 'message error'), 'success' );
-					$this->redirect(BASE_PATH.'users/login');
-				}else{
-					$this->Flash->error(FORGET_PASSWORD_FAILURE, 'default', array( 'class' => 'message error'), 'error' );
-					$this->redirect(BASE_PATH.'users/forgotPassword');
-				}
+			$email =  $this->request->data['User']['email'];
+			$password = $this->randomPassword();
+			$password1 = $this->Auth->password( $password );
+			$this->User->query("UPDATE users SET password = '$password1' WHERE email = '$email'");
+			$to = $email;
+			$subject = "New Password Request";
+			$txt = "Your New Password: ".$password;
+			$headers = "From: thaibm.uet@gmail.com";
+
+			if( mail($to,$subject,$txt,$headers) ){
+				$this->Session->setFlash(FORGET_PASSWORD_SUCCESS, 'default', array( 'class' => 'message error'), 'success' );
+				$this->redirect(BASE_PATH.'users/login');
+			}else{
+				$this->Flash->error(FORGET_PASSWORD_FAILURE, 'default', array( 'class' => 'message error'), 'error' );
+				$this->redirect(BASE_PATH.'users/forgotPassword');
 			}
+		}
 	}
 
 	public function randomPassword(){
@@ -145,29 +144,42 @@ class UsersController extends AppController {
 		}
 	}
 
-public function register() {
-	$this->layout = 'login';
-	if ($this->request->is('post')) {
-		$this->User->create();
-		$this->request->data['User']['password'] = AuthComponent::password($this->request->data['User']['password']);
-		if ($this->User->save($this->request->data)) {
-			$this->Flash->success(__('The user has been saved.'));
-			return $this->redirect(array('action' => 'index'));
-		} else {
-			$this->Flash->error(__('The user could not be saved. Please, try again.'));
+	public function register() {
+		$this->layout = 'login';
+		if ($this->request->is('post')) {
+			$this->User->create();
+			$existedEmail = $this->User->findByEmail($this->request->data['User']['email']);
+
+			if (!$existedEmail) {
+				if($this->request->data['User']['confirm_password'] == $this->request->data['User']['password'])
+				{
+					$this->request->data['User']['password'] = AuthComponent::password($this->request->data['User']['password']);
+					if ($this->User->save($this->request->data)) {
+						$this->Flash->success(__('The user has been saved.'));
+						return $this->redirect(array('action' => 'login'));
+					} else {
+						$this->Flash->error(__('The user could not be saved. Please, try again.'));
+					}
+				} else {
+					$this->Flash->error(__('These passwords do not match. Try again? '));
+				}
+			} else {
+				$this->Flash->error(__('This email has already existed! '));
+			}
+			
+
 		}
 	}
-}
 
-public function index() {
-	$this->layout = 'main';
-	$this->User->recursive = 0;
-	$this->set('users', $this->Paginator->paginate());
-}
+	public function index() {
+		$this->layout = 'main';
+		$this->User->recursive = 0;
+		$this->set('users', $this->Paginator->paginate());
+	}
 
-public function test(){
-	$this->layout = 'main';
-}
+	public function test(){
+		$this->layout = 'main';
+	}
 /**
  * view method
  *
