@@ -11,7 +11,7 @@
         public $components = array('Flash');
 
         public function beforeFilter(){
-            $this->Auth->allow('index');
+            //$this->Auth->allow('index');
         }
 
         public function index()

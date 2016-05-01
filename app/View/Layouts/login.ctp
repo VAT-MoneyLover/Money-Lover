@@ -49,7 +49,7 @@
             <div class="inner-bg">
                 <div class="container">
                 	
-                    <div class="row">
+                <div class="row">
                         <div class="col-sm-8 col-sm-offset-2 text">
                             <h1><strong>Money Lover</strong></h1>
                             <div class="description">
@@ -59,30 +59,15 @@
                               </p>
                           </div>
                       </div>
-                  </div>
+                </div>
 
-                  <div class="row">
+                <div class="row">
                     <div class="col-sm-4"></div>
-                    <!-- Login -->
-                    <div class="col-sm-4">
-                        <div class="form-box">
-                            <div class="form-top">
-                                <div class="form-top-left">
-                                    <h3>Login to our site</h3>
-                                    <p>Enter email and password:</p>
-                                </div>
-                                <div class="form-top-right">
-                                    <i class="fa fa-key"></i>
-                                </div>
-                            </div>
-                            <div class="form-bottom">
-                             <?php 
-                             echo $this->fetch('content');
-                             ?>
-                         </div>
-                     </div>
-
-                     <!-- <div class="social-login">
+                    <!-- Login & register-->
+                    <?php 
+                        echo $this->fetch('content');
+                    ?>
+                    <!-- <div class="social-login">
                         <h3>...or login with:</h3>
                         <div class="social-login-buttons">
                      
@@ -99,17 +84,12 @@
                             </a>
                      
                         </div>
-                                         </div> -->
-
-                </div>
-
-
-
+                    </div> -->
                         <!-- <div class="col-sm-1 middle-border"></div>
-                        <div class="col-sm-1"></div> -->
-                        <!-- Sigup	 -->
+                        <div class="col-sm-1"></div>
+                        Sigup -->
                         
-                    </div>
+                </div>
                     
                 </div>
             </div>
@@ -125,26 +105,26 @@
         				<div class="footer-border"></div>
         				<p>Made by <a href="#" target="_blank"><strong>VAT</strong></a> of 
         					UET - VNU</p>
-                     </div>
+                       </div>
 
-                 </div>
-             </div>
-         </footer>
+                   </div>
+               </div>
+           </footer>
 
-         <!-- Javascript -->
-         <?php
-         echo $this->HTML->script(array(
-         'jquery-1.11.1.min.js',
-         'bootstrap.min.js',
-         'jquery.backstretch.min.js',
-         'scripts.js'
-         ));
+           <!-- Javascript -->
+           <?php
+           echo $this->HTML->script(array(
+           'jquery-1.11.1.min.js',
+           'bootstrap.min.js',
+           'jquery.backstretch.min.js',
+           'scripts.js'
+           ));
 
-         ?>
-         <!-- <script src="assets/js/jquery-1.11.1.min.js"></script> -->
-         <!-- <script src="assets/bootstrap/js/bootstrap.min.js"></script> -->
-         <!-- <script src="assets/js/jquery.backstretch.min.js"></script> -->
-         <!-- <script src="assets/js/scripts.js"></script> -->
+           ?>
+           <!-- <script src="assets/js/jquery-1.11.1.min.js"></script> -->
+           <!-- <script src="assets/bootstrap/js/bootstrap.min.js"></script> -->
+           <!-- <script src="assets/js/jquery.backstretch.min.js"></script> -->
+           <!-- <script src="assets/js/scripts.js"></script> -->
 
         <!--[if lt IE 10]>
             <script src="assets/js/placeholder.js"></script>

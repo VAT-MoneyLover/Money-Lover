@@ -34,7 +34,7 @@ class UsersController extends AppController {
 
 	public function beforeFilter(){
 		//$this->Auth->allow('add');
-		$this->Auth->allow('add', 'google_login', 'googlelogin', 'forgotPassword' );
+		$this->Auth->allow('register', 'google_login', 'googlelogin', 'forgotPassword' );
 		parent::beforeFilter();
 	}
 
@@ -133,7 +133,7 @@ class UsersController extends AppController {
 		$this->redirect('index');
 	}
 	public function login(){
-		$this->layout = 'main';
+		$this->layout = 'login';
 		if ($this->request->is('post')) {
 				# code...
 			if ($this->Auth->login()) {
@@ -145,7 +145,8 @@ class UsersController extends AppController {
 		}
 	}
 
-public function add() {
+public function register() {
+	$this->layout = 'login';
 	if ($this->request->is('post')) {
 		$this->User->create();
 		$this->request->data['User']['password'] = AuthComponent::password($this->request->data['User']['password']);
