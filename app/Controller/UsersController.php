@@ -133,6 +133,7 @@ class UsersController extends AppController {
 		$this->redirect('index');
 	}
 	public function login(){
+		$this->layout = 'main';
 		if ($this->request->is('post')) {
 				# code...
 			if ($this->Auth->login()) {
@@ -158,11 +159,14 @@ public function add() {
 }
 
 public function index() {
-	//$this->layout = 'index';
+	$this->layout = 'main';
 	$this->User->recursive = 0;
 	$this->set('users', $this->Paginator->paginate());
 }
 
+public function test(){
+	$this->layout = 'main';
+}
 /**
  * view method
  *
