@@ -3,7 +3,7 @@
 		width: 100%;
 	}
 </style>
-<div class="col-sm-4">
+<div class="col-xs-12 col-sm-6 col-md-4">
 	<div class="form-box">
 		<div class="form-top">
 			<div class="form-top-left">
@@ -18,6 +18,14 @@
 			<!-- <form role="form" action="" method="post" class="login-form"> -->
 			<?php echo $this->form->create('User', array('id'=>'login', 'role'=>'form', 'method'=>'post', 'class'=>'registration-form')); ?>
 			<div class="form-group">
+				<?php 
+					if ($this->Session->check('Message.success')) {
+						echo $this-> Session-> flash('success');
+					}
+					if ($this->Session->check('Message.error')) {
+						echo $this-> Session-> flash('error');
+					}
+				?>
 				<label class="sr-only" for="form-email">Email</label>
 				<!-- <input type="email" name="form-username" placeholder="Email..." class="form-username form-control" id="form-username"> -->
 				<?php echo $this->form->input('email', array('label'=> false, 'type'=>'email', 'class'=>'form-username form-control', 'placeholder'=>'Email...')); ?>

@@ -37,8 +37,52 @@ class UsersController extends AppController {
 		parent::beforeFilter();
 	}
 
+	public function index() {
+		$this->layout = 'main';
+		$this->User->recursive = 0;
+		$this->set('users', $this->Paginator->paginate());
+	}
+
+	public function login(){
+		$this->layout = 'login';
+		if ($this->request->is('post')) {
+			if ($this->Auth->login()) {
+				$this->Session->setFlash(LOGIN_SUCCESS, 'default', array( 'class' => 'message success'), 'success' );
+				return $this->redirect($this->Auth->redirectUrl(BASE_PATH));
+			} else{
+				$this->Session->setFlash(LOGIN_ERROR, 'default', array( 'class' => 'message error'), 'error' );
+				$this->redirect(BASE_PATH.'users/login');
+			}
+		}
+	}
+
+	public function register() {
+		$this->layout = 'login';
+		if ($this->request->is('post')) {
+			$this->User->create();
+			$existedEmail = $this->User->findByEmail($this->request->data['User']['email']);
+
+			if (!$existedEmail) {
+				if($this->request->data['User']['confirm_password'] == $this->request->data['User']['password'])
+				{
+					$this->request->data['User']['password'] = AuthComponent::password($this->request->data['User']['password']);
+					if ($this->User->save($this->request->data)) {
+						$this->Session->setFlash(REGISTRATION_SUCCESS, 'default', array('class'=> 'message success'), 'success');
+						return $this->redirect(array('action' => 'login'));
+					} else {
+						$this->Session->setFlash('The user could not be saved. Please, try again.', 'default', array('class'=> 'message error'), 'error');
+					}
+				} else {
+					$this->Session->setFlash('These passwords do not match. Try again? ', 'default', array('class'=> 'message error'), 'error');
+				}
+			} else {
+				$this->Session->setFlash('This email has already existed! ', 'default', array('class'=> 'message error'), 'error');
+			}
+		}
+	}
+
 	public function forgotPassword(){
-		//$this->layout('login');
+		$this->layout('login');
 		if( !empty( $this->request->data ) ){
 			$email =  $this->request->data['User']['email'];
 			$password = $this->randomPassword();
@@ -129,57 +173,14 @@ class UsersController extends AppController {
 
 	public function logout(){
 		$this->Auth->logout();
-		$this->redirect('index');
+		$this->redirect('login');
 	}
-	public function login(){
-		$this->layout = 'login';
-		if ($this->request->is('post')) {
-				# code...
-			if ($this->Auth->login()) {
-					# code...
-				return $this->redirect($this->Auth->redirectUrl(BASE_PATH));
-			} else{
-				$this->Flash->error('Invalid Email and Password!');
-			}
-		}
-	}
+	
 
-	public function register() {
-		$this->layout = 'login';
-		if ($this->request->is('post')) {
-			$this->User->create();
-			$existedEmail = $this->User->findByEmail($this->request->data['User']['email']);
+	
 
-			if (!$existedEmail) {
-				if($this->request->data['User']['confirm_password'] == $this->request->data['User']['password'])
-				{
-					$this->request->data['User']['password'] = AuthComponent::password($this->request->data['User']['password']);
-					if ($this->User->save($this->request->data)) {
-						$this->Flash->success(__('The user has been saved.'));
-						return $this->redirect(array('action' => 'login'));
-					} else {
-						$this->Flash->error(__('The user could not be saved. Please, try again.'));
-					}
-				} else {
-					$this->Flash->error(__('These passwords do not match. Try again? '));
-				}
-			} else {
-				$this->Flash->error(__('This email has already existed! '));
-			}
-			
+	
 
-		}
-	}
-
-	public function index() {
-		$this->layout = 'main';
-		$this->User->recursive = 0;
-		$this->set('users', $this->Paginator->paginate());
-	}
-
-	public function test(){
-		$this->layout = 'main';
-	}
 /**
  * view method
  *

@@ -3,7 +3,8 @@
 		width: 100%;
 	}
 </style>
-<div class="col-sm-4">
+<div class="col-xs-12 col-sm-6 col-md-4">
+
 	<div class="form-box">
 		<div class="form-top">
 			<div class="form-top-left">
@@ -18,6 +19,14 @@
 			<!-- <form role="form" action="" method="post" class="login-form"> -->
 			<?php echo $this->form->create('User', array('id'=>'login', 'role'=>'form', 'method'=>'post', 'class'=>'form-signin')); ?>
 			<div class="form-group">
+				<?php 
+				if ($this->Session->check( 'Message.success' ) ) {
+					echo $this-> Session -> flash('success');
+				}
+				if ($this->Session->check( 'Message.error' ) ) {
+					echo $this-> Session -> flash('error');
+				}
+				?>
 				<label class="sr-only" for="form-email">Email</label>
 				<!-- <input type="email" name="form-username" placeholder="Email..." class="form-username form-control" id="form-username"> -->
 				<?php echo $this->form->input('email', array('label'=> false, 'type'=>'email', 'class'=>'form-email form-control', 'placeholder'=>'Email...')); ?>
@@ -62,3 +71,24 @@
 	</div>
 </div>
 
+					<!-- <div class="social-login">
+                        <h3>...or login with:</h3>
+                        <div class="social-login-buttons">
+                     
+                            <a class="btn btn-link-1 btn-link-1-facebook" href="#">
+                                <i class="fa fa-facebook"></i> Facebook
+                            </a>
+                     
+                            <a class="btn btn-link-1 btn-link-1-google-plus" href="#">
+                                <i class="fa fa-google-plus"></i> Google Plus
+                            </a>
+                     
+                            <a class="btn btn-link-1 btn-link-1-twitter" href="#">
+                                <i class="fa fa-twitter"></i> Twitter
+                            </a>
+                     
+                        </div>
+                      </div> -->
+                        <!-- <div class="col-sm-1 middle-border"></div>
+                        <div class="col-sm-1"></div>
+                        Sigup -->
