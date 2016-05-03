@@ -3,16 +3,13 @@
 ?>
 <h1><?php echo $wallet['Wallet']['name']; ?></h1>
 <?php
-/**
- * Created by PhpStorm.
- * User: Thái
- * Date: 4/6/2016
- * Time: 11:25 PM
- */
+
 echo "Name: ". $wallet['Wallet']['name'] . "<br>";
 echo "Currency: ". $wallet['Wallet']['currency']."<br>";
 
-echo $this->HTML->link('Create a transaction in this wallet.', array('controller' => 'transactions', 'action' => 'add', $wallet['Wallet']['id']));
+echo $this->HTML->link('Create a transaction in this wallet.', array('controller' => 'transactions', 'action' => 'add', $wallet['Wallet']['id']))."<br>";
+
+echo $this->HTML->link('View list wallet.', array('controller'=>'wallets', 'action'=>'viewList'));
 ?>
 <table>
     <tr>

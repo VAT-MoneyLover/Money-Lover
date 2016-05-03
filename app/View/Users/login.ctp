@@ -20,6 +20,7 @@
 			<?php echo $this->form->create('User', array('id'=>'login', 'role'=>'form', 'method'=>'post', 'class'=>'form-signin')); ?>
 			<div class="form-group">
 				<?php 
+				$this->Session->flash();
 				if ($this->Session->check( 'Message.success' ) ) {
 					echo $this-> Session -> flash('success');
 				}

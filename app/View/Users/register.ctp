@@ -19,6 +19,7 @@
 			<?php echo $this->form->create('User', array('id'=>'login', 'role'=>'form', 'method'=>'post', 'class'=>'registration-form')); ?>
 			<div class="form-group">
 				<?php 
+					$this->Session->flash();
 					if ($this->Session->check('Message.success')) {
 						echo $this-> Session-> flash('success');
 					}
@@ -28,7 +29,7 @@
 				?>
 				<label class="sr-only" for="form-email">Email</label>
 				<!-- <input type="email" name="form-username" placeholder="Email..." class="form-username form-control" id="form-username"> -->
-				<?php echo $this->form->input('email', array('label'=> false, 'type'=>'email', 'class'=>'form-username form-control', 'placeholder'=>'Email...')); ?>
+				<?php echo $this->form->input('email', array('label'=> false, 'type'=>'email', 'class'=>'form-email form-control', 'placeholder'=>'Email...')); ?>
 			</div>
 			<div class="form-group">
 				<label class="sr-only" for="form-password">Password</label>

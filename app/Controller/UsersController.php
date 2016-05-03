@@ -38,7 +38,7 @@ class UsersController extends AppController {
 	}
 
 	public function index() {
-		$this->layout = 'main';
+		//$this->layout = 'login';
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
 	}
@@ -82,7 +82,7 @@ class UsersController extends AppController {
 	}
 
 	public function forgotPassword(){
-		$this->layout('login');
+		$this->layout = 'login';
 		if( !empty( $this->request->data ) ){
 			$email =  $this->request->data['User']['email'];
 			$password = $this->randomPassword();
@@ -126,11 +126,11 @@ class UsersController extends AppController {
 			$newData['User']['old_password'] = AuthComponent::password($newData['User']['old_password']);
 			$newData['User']['new_password'] = AuthComponent::password($newData['User']['new_password']);
 				// $newData['User']['confirm_password'] = AuthComponent::password($newData['User']['confirm_password']);
-			if ($data['User']['password'] == $newData['User']['old_password']) {
+			if ($data['User']['password'] == $newData['User']['old_password'] || $data['User']['password'] == '') {
 					# code...
 				if ($this->User->saveField('password', $newData['User']['new_password'])) {
 					$this->Flash->success(__('The user has been saved.'));
-					// return $this->redirect(array('action' => 'index'));
+					return $this->redirect(array('action' => 'index'));
 				} else {
 					$this->Flash->error(__('The user could not be saved. Please, try again.'));
 				}
@@ -195,8 +195,6 @@ public function view($id = null) {
 	$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 	$this->set('user', $this->User->find('first', $options));
 }
-
-
 
 /**
  * edit method
