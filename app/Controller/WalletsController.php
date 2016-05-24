@@ -47,6 +47,7 @@
         }
 
         public function view($id){
+            $this->layout = 'main';
             if($id){
                 $data = $this->Wallet->findById($id);
             } else{

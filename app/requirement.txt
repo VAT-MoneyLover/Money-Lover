@@ -1,0 +1,22 @@
+1. Accounts & Authentication
+a. Register (activate via email)  <done>
+b. Upload/Change avatar		have bug			
+c. Change/Forgot password			done 
+d. Log in/Log out					<done>
+
+2. Wallets management
+a. Add wallet						<done>
+b. Update wallet info				<done>
+c. Set current wallet				<done>
+d. Transfer money between wallets
+
+3. Categories management
+a. Add/Edit category 			<done>
+b. Delete category 				<done>
+Note: Each category is either income or expense type
+
+4. Transactions management
+a. Add/Edit transaction				<done>
+b. Delete transaction					<done>
+c. Show transactions by date range, category 
+d. Monthly report
