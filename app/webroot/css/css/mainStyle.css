@@ -482,6 +482,21 @@ footer .footer-below {
 }
 
 /*--------view.ctp----------*/
+@media (min-width: 1100px) {
+    #addButton{
+        position: fixed;
+        right: 15em;
+        top: 116px;
+    }
+}
+@media (max-width: 1100px) {
+    #addButton{
+        position: fixed;
+        right: 30em;
+        top: 116px;
+    }
+}
+
 .bg-content, .bg-content a{
     background: #fff;
     color: #333;
@@ -500,6 +515,25 @@ footer .footer-below {
 }
 #header #info table tr .title {
     text-align: left;
-    
 }
-
+/*========#body=====*/
+#body .transaction table tr {
+    padding: 10px 0 10px 0;
+}
+#body .transaction table tr .categoryName a{
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    font-size: 20px;
+    text-decoration: none;
+    display: block;
+}
+#body .transaction table tr .categoryName, #body .transaction table tr .date{
+    text-align: left;
+}
+#body .transaction table tr .cost{
+    text-align: right;
+}
+#body .transaction table tr td a{
+    padding: 0;
+}

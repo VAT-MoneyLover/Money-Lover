@@ -3,15 +3,17 @@
     App:: import('Controller', array('Users', 'Categories'));
 ?>
 <!-- Content -->
-<div class="col-md-3 col-sm-2"></div>
-<div class="col-md-6 col-sm-8">
+<div class="col-sm-2 col-md-3"></div>
+<div class="col-xs-12 col-sm-8 col-md-6">
     <!--Add button-->
-        <div>
-            <!-- Colored FAB button -->
-            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
-              <i class="material-icons">add</i>
-          </button>
-        </div>
+    <div id="addButton">
+        <!-- Colored FAB button -->
+        <!-- <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+          <i class="material-icons">add</i>
+        </button> -->
+        <?php echo $this->form->button('<i class="material-icons">add</i>',array('controller'=>'Transactions', 'action'=>'add', $wallet['Wallet']['id'], 'class'=>'mdl-button mdl-js-button mdl-button--fab mdl-button--colored') ); ?>
+    </div>
+
     <div id="header" class="bg-content">
         <div id="walletName">
             <h2><?php echo $wallet['Wallet']['name'];?></h2>
@@ -19,15 +21,15 @@
         <div id="info" class="">
             <table class="table">
                 <tr>
-                    <td class="title">Income</td>
+                    <td class="title">INCOME</td>
                     <td></td>
                 </tr>
                 <tr class="" style="border-bottom: solid 1px #cccccc">
-                    <td class="title">Expense</td>
+                    <td class="title">EXPENSE</td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td class="title">Total</td>
+                    <td class="title">TOTAL</td>
                     <td></td>
                 </tr>
             </table>
@@ -41,15 +43,15 @@
                 $categoriesController = new CategoriesController;
                 $cateName = $categoriesController->getCategorynameById($transaction['category_id']);
         ?>
-        <div class="bg-content">
+        <div class="bg-content transaction">
             <table class="table">
                 <tr style="border-bottom: solid 1px #cccccc">
-                    <td><?php echo $this->HTML->link($cateName['Category']['name'], array('controller'=>'transactions', 'action'=>'edit', $transaction['id'])); ?></td>
+                    <td class="categoryName"><?php echo $this->HTML->link($cateName['Category']['name'], array('controller'=>'transactions', 'action'=>'edit', $transaction['id'])); ?></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td><?php echo $transaction['date']; ?></td>
-                    <td><?php echo $transaction['cost']; ?></td>
+                    <td class="date"><?php echo $transaction['date']; ?></td>
+                    <td class="cost"><?php echo $transaction['cost']; ?></td>
                 </tr>
             </table>
         </div>

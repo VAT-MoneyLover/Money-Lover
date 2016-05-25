@@ -34,7 +34,8 @@
 echo $this->HTML->script(array(
 	'jquery.js',
 	'bootstrap2.min.js',
-	'material.min.js'
+	'material.min.js',
+	'mainStyle.js'
 	));
 	?>
 </body>
