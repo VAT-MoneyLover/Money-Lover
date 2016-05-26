@@ -496,13 +496,18 @@ footer .footer-below {
         top: 116px;
     }
 }
-
+/*------Button-------*/
+.mdl-button--fab.mdl-button--colored:hover{
+    background: #FF80AB;
+}
+/*------.bgcontent----*/
 .bg-content, .bg-content a{
     background: #fff;
     color: #333;
     margin-top: 1em;
     padding: 0 2em 0 2em;
 }
+/*------#header-------*/
 #header #walletName{
     padding: 1.5em ;
 }
@@ -516,8 +521,17 @@ footer .footer-below {
 #header #info table tr .title {
     text-align: left;
 }
+.cost{
+    text-align: right;
+}
+.income{
+    color: green;
+}
+.expense{
+    color: red;
+}
 /*========#body=====*/
-#body .transaction table tr {
+#body .transaction table tr td{
     padding: 10px 0 10px 0;
 }
 #body .transaction table tr .categoryName a{
@@ -530,9 +544,6 @@ footer .footer-below {
 }
 #body .transaction table tr .categoryName, #body .transaction table tr .date{
     text-align: left;
-}
-#body .transaction table tr .cost{
-    text-align: right;
 }
 #body .transaction table tr td a{
     padding: 0;

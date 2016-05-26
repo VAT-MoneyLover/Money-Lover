@@ -109,8 +109,11 @@ class CategoriesController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 
-	public function getCategorynameById($id){
+	public function getCategoryById($id){
 		$data = $this->Category->findById($id);
 		return $data;
+	}
+	public function gerCategorytypeById($id){
+
 	}
 }
