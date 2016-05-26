@@ -55,25 +55,34 @@
         </div>
     </div><!--#header-->
     <!-- #body -->
-    <div id="body" >
-        
+    <div id="body" >      
         <?php
-            foreach($wallet['Transaction'] as $transaction){
-                $category = $categoriesController->getCategoryById($transaction['category_id']); 
+            foreach ($wallet['Category'] as $Category) {
         ?>
-        <div class="bg-content transaction">
-            <table class="table">
-                <tr style="border-bottom: solid 1px #cccccc">
-                    <td class="categoryName"><?php echo $this->HTML->link($category['Category']['name'], array('controller'=>'transactions', 'action'=>'edit', $transaction['id'])); ?></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td class="date"><?php echo $transaction['date']; ?></td>
-                    <td class="cost <?php  if($category['Category']['type']==0) echo 'expense'; else echo'income'; ?>"><?php echo $transaction['cost']; ?></td>
-                </tr>
-            </table>
-        </div>
-        <?php 
+                        <div class="bg-content transaction">
+                            <table class="table">
+                                <tr style="border-bottom: solid 1px #cccccc">
+                                    <td class="categoryName"><?php echo $Category['name']; ?></td>
+                                    <td></td>
+                                </tr>
+        <?php
+                foreach ($wallet['Transaction'] as $Transaction) {
+                    if ($Transaction['category_id'] == $Category['id']) {
+        ?>                      
+                            <a href="<?php echo BASE_PATH.'transactions/edit/'.$Transaction['id'];?>">
+                                <tr>
+                                    <td class="date"><?php echo $Transaction['date']; ?></td>
+                                    <td class="cost <?php  if($Category['type']==0) echo 'expense'; else echo'income'; ?>"><?php echo $Transaction['cost']; ?></td>
+                                </tr>
+                            </a>
+        <?php
+                    }
+                }
+        ?>
+
+                            </table>
+                        </div>
+        <?php    
             }
         ?>
     </div>
@@ -94,7 +103,6 @@
 <!-- 
 <h1><?php echo $wallet['Wallet']['name']; ?></h1>
 <?php
-
 echo "Name: ". $wallet['Wallet']['name'] . "<br>";
 echo "Currency: ". $wallet['Wallet']['currency']."<br>";
 
