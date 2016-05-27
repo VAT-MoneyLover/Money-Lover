@@ -69,12 +69,10 @@
                 foreach ($wallet['Transaction'] as $Transaction) {
                     if ($Transaction['category_id'] == $Category['id']) {
         ?>                      
-                            <a href="<?php echo BASE_PATH.'transactions/edit/'.$Transaction['id'];?>">
                                 <tr>
                                     <td class="date"><?php echo $Transaction['date']; ?></td>
                                     <td class="cost <?php  if($Category['type']==0) echo 'expense'; else echo'income'; ?>"><?php echo $Transaction['cost']; ?></td>
                                 </tr>
-                            </a>
         <?php
                     }
                 }
