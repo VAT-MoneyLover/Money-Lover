@@ -21,14 +21,14 @@
         $income = 0; 
         $expense = 0;
         
-        foreach ($wallet['Transaction'] as $transaction) {
+        foreach ($wallet['Transaction'] as $Transaction) {
             # code...
-            $category = $categoriesController->getCategoryById($transaction['category_id']);
-            if ($category['Category']['type'] == 0) {
+            $Category = $categoriesController->getCategoryById($Transaction['category_id']);
+            if ($Category['Category']['type'] == 0) {
                 # code...
-                $expense += $transaction['cost'];
-            } else if ($category['Category']['type'] == 1) {
-                $income += $transaction['cost'];
+                $expense += $Transaction['cost'];
+            } else if ($Category['Category']['type'] == 1) {
+                $income += $Transaction['cost'];
             }
         }
     ?>
@@ -60,81 +60,30 @@
             foreach ($wallet['Category'] as $Category) {
         ?>
                         <div class="bg-content transaction">
-                            <table class="table">
-                                <tr style="border-bottom: solid 1px #cccccc">
-                                    <td class="categoryName"><?php echo $Category['name']; ?></td>
-                                    <td></td>
-                                </tr>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <span class="categoryName"><?php echo $Category['name']; ?></span>
+                                    <span></span>
+                                </li>
         <?php
                 foreach ($wallet['Transaction'] as $Transaction) {
                     if ($Transaction['category_id'] == $Category['id']) {
         ?>                      
-                                <tr>
-                                    <td class="date"><?php echo $Transaction['date']; ?></td>
-                                    <td class="cost <?php  if($Category['type']==0) echo 'expense'; else echo'income'; ?>"><?php echo $Transaction['cost']; ?></td>
-                                </tr>
+                                <li class="list-group-item">
+                                    <a href="<?php echo BASE_PATH.'transactions/edit/'.$Transaction['id'];?>">
+                                        <span class="date "><?php echo $Transaction['date']; ?></span>
+                                        <span class="cost <?php  if($Category['type']==0) echo 'expense'; else echo'income'; ?>"><?php echo $Transaction['cost']; ?></span>
+                                    </a>
+                                </li>
         <?php
                     }
                 }
         ?>
 
-                            </table>
+                            </ul>
                         </div>
         <?php    
             }
         ?>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-<h1><?php echo $wallet['Wallet']['name']; ?></h1>
-<?php
-echo "Name: ". $wallet['Wallet']['name'] . "<br>";
-echo "Currency: ". $wallet['Wallet']['currency']."<br>";
-
-echo $this->HTML->link('Create a transaction in this wallet.', array('controller' => 'transactions', 'action' => 'add', $wallet['Wallet']['id']))."<br>";
-
-echo $this->HTML->link('View list wallet.', array('controller'=>'wallets', 'action'=>'viewList'));
-?>
-<table>
-    <tr>
-        <td>No.</td>
-        <td>Date</td>
-        <td>Category Name</td>
-        <td>Cost</td>
-        <td>Note</td>
-    </tr>
-
-    <?php
-        $counter = 1;
-        foreach($wallet['Transaction'] as $transaction){
-
-            $categoriesController = new CategoriesController;
-            $category = $categoriesController->getCategoryById($transaction['category_id']);
-
-            echo "
-            <tr>
-                <td>".$counter."</td>
-                <td>".$transaction['date']."</td>
-                <td>".$this->HTML->link($category['Category']['name'], array('controller'=>'transactions', 'action'=>'edit', $transaction['id']))."</td>
-                <td>".$transaction['cost'] ."</td>
-                <td>".$transaction['note']."</td>
-            </tr>";
-            $counter++;
-        }
-
-    ?>
-</table>
- -->
