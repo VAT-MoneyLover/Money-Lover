@@ -225,3 +225,30 @@ footer a:hover, footer a:focus { color: #fff; border-bottom: 1px dotted #fff; }
 
 }
 
+.form-box input, .form-box textarea, .form-box button, .form-box select{
+	font-size: 18px;
+}
+.form-control{
+	outline: none;
+	border-top: none !important;
+	border-left: none !important;
+	border-right: none !important;
+	border-radius: 0px;
+	-webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	box-shadow: none !important;
+	margin-top: 1em;
+}
+textarea.form-control , .form-control{
+	height: 3em;
+}
+
+button.btn{
+	margin-top: 2em;
+	background-color: #18bc9c;
+	color: #fff;
+}
+button.btn:hover {
+    opacity: 0.6;
+    color: #fff;
+}

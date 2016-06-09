@@ -5,6 +5,8 @@
  * Date: 4/9/2016
  * Time: 9:03 AM
  */
+    App:: import('model', array('Wallet', 'Category')); 
+
     class TransactionsController extends AppController{
 
         public $components = array('Flash');
@@ -15,6 +17,7 @@
         }
 
         public function add($id){
+            $this->layout = 'popup';
             if($this->request->is('post')){
 
                 $this->Transaction->create();

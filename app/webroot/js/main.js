@@ -3,7 +3,6 @@ $(document).ready(function(){
 	$('.transaction').click(function(){
 		window.location = $(this).find('a').attr("href");
 	});
-	// text color of expense and income
 	
 
 

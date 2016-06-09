@@ -18,7 +18,7 @@
     </div>
     <!-- execute income, expense and total -->
     <?php 
-        $income = 0; 
+        $income = $wallet['Wallet']['starting_amount']; 
         $expense = 0;
         
         foreach ($wallet['Transaction'] as $transaction) {

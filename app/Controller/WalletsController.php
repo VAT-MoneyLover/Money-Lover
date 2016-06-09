@@ -5,6 +5,7 @@
  * Date: 4/5/2016
  * Time: 9:02 PM
  */
+    App:: import('model', array('Transaction', 'Category'));
 
     class WalletsController extends AppController {
 
@@ -32,20 +33,16 @@
         }
 
         public function add(){
-
             if($this->request->is('post')){
-
                 $this->Wallet->create(); // Wallet is model
                 $this->request->data['Wallet']['user_id'] = AuthComponent::user('id');
-                $this->request->data['Wallet']['visible'] = 0;
                 if($this->Wallet->save($this->request->data)){
                     $this->Flash->set('Wallet has been created!');
                     $this->redirect('index');
                 }
-
             }
         }
-
+        //view by transaction
         public function viewDate($id){
             $this->layout = 'main';
             if($id){
@@ -58,7 +55,7 @@
             $this->Wallet->User->id = AuthComponent::user('id');
             $this->Wallet->User->saveField('current_wallet_id', $data['Wallet']['id']);
         }
-
+        // View by category
         public function view($id){
             $this->layout = 'main';
             if($id){
@@ -97,5 +94,12 @@
                     $this->redirect('index');
                 }
             }
+        }
+
+        public function transferMoney(){
+
+
+            $this->set('categories', $this->Category->find('list', array('conditions'=>array('wallet_id'=> $id))));
+
         }
     }
