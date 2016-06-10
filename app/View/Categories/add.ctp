@@ -1,24 +1,23 @@
-<div class="categories form">
-<?php echo $this->Form->create('Category'); ?>
-	<fieldset>
-		<legend><?php echo __('Add Category'); ?></legend>
-	<?php
-		echo $this->Form->input('wallet_id');
-		echo $this->Form->input('name');
-		echo $this->Form->select('type', array('0'=>'Expense', '1'=>'Income'), array('empty'=>false));
-		// echo $this->Form->input('parent_id');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Html->link(__('List Categories'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Wallets'), array('controller' => 'wallets', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Wallet'), array('controller' => 'wallets', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
-	</ul>
+<div class="col-xs-12 col-sm-3 col-md-4"></div>
+<div class="col-xs-12 col-sm-6 col-md-4">
+	<div class="form-box">
+		<div class="form-top">
+			<h1>Create a new transaction</h1>
+		</div>
+		<div class="form-mid">
+			<?php echo $this->Form->create('Category');?>
+			<div class="form-group">
+				<?php
+					echo $this->Form->input('wallet_id', array('label'=> false , 'class'=>'form-control'));
+					echo $this->Form->input('name', array('label'=> false , 'class'=>'form-control', 'placeholder'=>'Category"s name'));
+					echo $this->Form->select('type', 
+						array('0'=>'Expense', '1'=>'Income'), 
+						array('empty'=>false, 'label'=> false , 'class'=>'form-control')
+						
+						);
+					echo $this->form->button('Add category', array('type'=>'submit','class'=>'btn'));
+					?>
+			</div>
+		</div>
+	</div>
 </div>

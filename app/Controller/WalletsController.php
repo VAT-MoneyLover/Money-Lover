@@ -28,17 +28,19 @@
         }
 
         public function viewList(){
+            $this->layout = 'main';
             $data = $this->Wallet->find('all');
             $this->set('wallets', $data);
         }
 
         public function add(){
+            $this->layout = 'popup';
             if($this->request->is('post')){
                 $this->Wallet->create(); // Wallet is model
                 $this->request->data['Wallet']['user_id'] = AuthComponent::user('id');
                 if($this->Wallet->save($this->request->data)){
                     $this->Flash->set('Wallet has been created!');
-                    $this->redirect('index');
+                    $this->redirect(BASE_PATH.'wallets/viewList');
                 }
             }
         }
@@ -70,19 +72,19 @@
         }
 
         public function edit($id){
-
+            $this->layout = 'popup';
             $data = $this->Wallet->findById($id);
 
             if($this->request->is(array('post', 'put'))){
                 $this->Wallet->id = $id;
                 if($this->Wallet->save($this->request->data)){
                     $this->Flash->set('The wallet has been editted!');
-                    $this->redirect('index');
+                    $this->redirect(BASE_PATH.'wallets/viewList');
                 }
             }
 
             $this->request->data = $data;//fill old value in every field
-
+            $this->set('wallet', $data);
         }
 
         public function delete($id){
@@ -91,7 +93,7 @@
             if($this->request->is(array('post', 'put'))){
                 if($this->Wallet->delete()){
                     $this->Flash->set('The wallet has been deleted!');
-                    $this->redirect('index');
+                    $this->redirect(BASE_PATH.'wallets/viewList');
                 }
             }
         }

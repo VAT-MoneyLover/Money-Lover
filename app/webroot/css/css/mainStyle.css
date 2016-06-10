@@ -83,8 +83,9 @@ hr.star-primary:after {
 
 .header {
     text-align: center;
-    color: #fff;
-    background: #18bc9c;
+    /*color: #fff;*/
+    /*background: #18bc9c;*/
+    background-color: rgba(158, 158, 158, 0.06);
     min-height: 650px;
 }
 
@@ -192,7 +193,7 @@ hr.star-primary:after {
     background-color: #2c3e50;
 }
 .container a {
-    color: #fff;
+    /*color: #fff;*/
 }
 
 section {
@@ -520,6 +521,9 @@ footer .footer-below {
 .mdl-button--fab.mdl-button--colored:hover{
     background: #FF80AB;
 }
+.bg-content{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.07), 0 6px 20px 0 rgba(0, 0, 0, 0.12);
+}
 /*------.bgcontent----*/
 .bg-content, .bg-content a{
     background: #fff;
@@ -586,3 +590,6 @@ footer .footer-below {
     text-align: right;
     float: right;
 }
+/* ===========All wallets=========*/
+
+

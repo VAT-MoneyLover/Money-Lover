@@ -46,6 +46,7 @@ class CategoriesController extends AppController {
  * @return void
  */
 	public function add() {
+		$this->layout = 'popup';
 		if ($this->request->is('post')) {
 			$this->Category->create();
 			$this->Category->data['Category']['user_id'] = AuthComponent::user('id');

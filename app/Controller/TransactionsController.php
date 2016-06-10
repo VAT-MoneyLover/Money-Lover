@@ -40,7 +40,7 @@
         }
 
         public function edit($transaction_id){
-
+            $this->layout = 'popup';
             $data = $this->Transaction->findById($transaction_id);
 
             if ($this->request->is(array('post', 'put'))) {
@@ -49,11 +49,23 @@
                 if ($this->Transaction->save($this->request->data)) {
                     # code...
                     $this->Flash->set('The transaction has been editted!');
-                $this->redirect('index');
+                $this->redirect(BASE_PATH);
                 }
             }
             $this->set('categories', $this->Transaction->Category->find('list', array('conditions'=>array('wallet_id'=> $data['Wallet']['id']))));
             $this->request->data = $data;
-                
+
+            $this->set('transaction', $this->Transaction->findById($transaction_id));
+        }
+        public function delete($id){
+            $this->Transaction->id = $id;
+            if ($this->request->is(array('post','put'))) {
+                # code...
+                if ($this->Transaction->delete()) {
+                    # code...
+                    $this->Flash->set('The transaction has been deleted!');
+                    $this->redirect(BASE_PATH);
+                }
+            }
         }
     }

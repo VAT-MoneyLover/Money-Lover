@@ -224,7 +224,14 @@ footer a:hover, footer a:focus { color: #fff; border-bottom: 1px dotted #fff; }
 	h1, h2 { font-size: 32px; }
 
 }
-
+/*===========================================*/
+.form-box h1{
+	text-align: center;
+}
+.glyphicon-trash{
+	float: right;
+	color: red;
+}
 .form-box input, .form-box textarea, .form-box button, .form-box select{
 	font-size: 18px;
 }
