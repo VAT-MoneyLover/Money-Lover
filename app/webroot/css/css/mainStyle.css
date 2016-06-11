@@ -525,11 +525,14 @@ footer .footer-below {
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.07), 0 6px 20px 0 rgba(0, 0, 0, 0.12);
 }
 /*------.bgcontent----*/
-.bg-content, .bg-content a{
+.bg-content{
     background: #fff;
     color: #333;
     /*margin-top: 1em;*/
     padding: 0 2em 0 2em;
+}
+.bg-content a{
+    color: #333;
 }
 /*------#header-------*/
 #header #walletName{
@@ -562,8 +565,8 @@ footer .footer-below {
     border: none;
     margin: 0;
     padding: 0;
-    height: 2.5em;
-    line-height: 2.5em;
+    height: 3.5em;
+    line-height: 3.5em;
 }
 .categoryName{
     display: block;
@@ -573,9 +576,9 @@ footer .footer-below {
     font-size: 20px;
 
 }
-#body .transaction ul li a{
+#body .transaction ul li a.block{
     display: block;
-    width: 100%;
+    /*width: 90%;*/
     height: 100%;
 }
 #body .transaction ul li .date, #body .transaction ul li .cost{
@@ -591,5 +594,28 @@ footer .footer-below {
     float: right;
 }
 /* ===========All wallets=========*/
-
-
+h2.allWallets{
+    padding-bottom: 1.5em;
+}
+.wallet a{
+    padding: 0;
+}
+span.walletName{
+    text-align: left;
+    font-size: 14pt;
+    float: left;
+}
+span.walletName a{
+    padding: 0;
+    width: 90%;
+}
+span.title{
+    float: left;
+}
+span.value{
+    float: right;
+}
+.glyphicon-pencil, .glyphicon-trash{
+    margin: 15px 0px 15px 15px;
+    float: right;
+}

@@ -21,7 +21,7 @@
 				    echo $this->form->input('currency', array('label'=> false , 'class'=>'form-control', 'placeholder'=>'Currency..'));
 				    echo $this->form->input('starting_amount', array('label'=> false , 'class'=>'form-control', 'placeholder'=>'Starting amount..'));
 				    // echo $this->Form->input('exclude_from_total', $options = array());
-				    echo $this->form->button('Add wallet', array('type'=>'submit','class'=>'btn'));
+				    echo $this->form->button('Edit wallet', array('type'=>'submit','class'=>'btn'));
 				?>
 			</div>
 		</div>

@@ -85,7 +85,7 @@
                     if ($Transaction['date'] == $date) {
                 ?>
                         <li class="list-group-item">
-                            <a href="<?php echo BASE_PATH.'transactions/edit/'.$Transaction['id'];?>">
+                            <a href="<?php echo BASE_PATH.'transactions/edit/'.$Transaction['id'];?>" class="block">
                                 <span class="categoryName"><?php echo $Category['Category']['name']; ?></span>
                                 <span class="cost <?php  if($Category['Category']['type']==0) echo 'expense'; else echo'income'; ?>"><?php echo $Transaction['cost']; ?></span>
                             </a>

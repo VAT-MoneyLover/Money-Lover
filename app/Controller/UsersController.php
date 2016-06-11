@@ -115,6 +115,7 @@ class UsersController extends AppController {
 	}
 
 	public function changePassword($id = null) {
+		$this->layout = 'popup';
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
@@ -143,7 +144,7 @@ class UsersController extends AppController {
 		}
 	}
 	public function avatar($id){
-
+		$this->layout = 'popup';
 		if ($this->request->is('post', 'put')) {
 
 			$this->User->id = $id;
@@ -161,7 +162,6 @@ class UsersController extends AppController {
 					$this->Flash->set('Error!');
 				}
 			}
-
 		}
 	}
 
@@ -189,6 +189,7 @@ class UsersController extends AppController {
  * @return void
  */
 public function view($id = null) {
+	$this->layout = 'main';
 	if (!$this->User->exists($id)) {
 		throw new NotFoundException(__('Invalid user'));
 	}

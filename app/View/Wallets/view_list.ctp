@@ -1,4 +1,4 @@
-<h2>All Wallets</h2>
+<h2 class="allWallets">All Wallets</h2>
 <?php
 
 ?>
@@ -26,15 +26,26 @@
         ?>
                         <div class="bg-content transaction">
                             <ul class="list-group">
-                                <li class="list-group-item">
-                                    <span class="walletName"><?php echo $this->HTML->link($wallet['Wallet']['name'], array('controller' => 'Wallets', 'action' => 'view', $wallet['Wallet']['id'])); ?></span>
-                                    <span></span>
+                                <li class="list-group-item wallet">
+                                    <span class="walletName"><?php echo $this->HTML->link($wallet['Wallet']['name'], array('controller' => 'Wallets', 'action' => 'view', $wallet['Wallet']['id']), array('class'=>'')); ?></span>
+                                    <?php
+                                        echo $this->HTML->link('', array('controller' => 'Wallets', 'action' => 'edit', $wallet['Wallet']['id']), array('class'=>'glyphicon glyphicon-pencil'));
+                                
+                                        /*echo $this->Form->postLink(
+                                            $this->HTML->tag('span','',array('class'=>'glyphicon glyphicon-trash'))."", 
+                                            array('controller' => 'Wallets', 'action' => 'delete', $wallet['Wallet']['id']),
+                                            array('escape'=>false),__('Are you sure you want to delete?'),
+                                            array('class'=>'btn btn-mini')
+                                            );*/
+                                    ?>
                                 </li>            
                                 <li class="list-group-item">
-                                    <a href="<?php echo BASE_PATH.'wallets/edit/'.$wallet['Wallet']['id'];?>">
-                                        <span class=""><?php echo $wallet['Wallet']['currency']; ?></span>
-                                        <span class=""><?php echo $wallet['Wallet']['starting_amount']; ?></span>
-                                    </a>
+                                    <span class="title">Currency</span>
+                                    <span class="value"><?php echo $wallet['Wallet']['currency']; ?></span>
+                                </li>
+                                <li class="list-group-item">
+                                    <span class="title">Starting amount</span>
+                                    <span class="value"><?php echo $wallet['Wallet']['starting_amount']; ?></span>
                                 </li>
                             </ul>
                         </div>

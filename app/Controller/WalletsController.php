@@ -17,6 +17,7 @@
 
         public function index()
         {
+            $this->layout = 'main';
             if(!AuthComponent::user('current_wallet_id')){
                 $data = $this->Wallet->find('all'); //Wallet is model, find('all') -> find all row
                 $this->set('wallets', $data); // wallets: valuable name

@@ -22,8 +22,13 @@
 					<a href="" class="dropdown-toggle" data-toggle="dropdown">Wallet</a>
 					<ul class="dropdown-menu">
 						<li><?php echo $this->HTML->link('List Wallet', array('controller'=>'wallets','action'=>'viewList')); ?></li>
+						<?php if(AuthComponent::user('current_wallet_id')){?>
 						<li><?php echo $this->HTML->link('View Wallet by Category', array('controller'=>'wallets','action'=>'view', AuthComponent::user('current_wallet_id'))); ?></li>
 						<li><?php echo $this->HTML->link('View Wallet by Transaction', array('controller'=>'wallets','action'=>'viewDate', AuthComponent::user('current_wallet_id'))); ?></li>
+						<?php 
+							}
+							
+						?>
 					</ul>
 				</li>
 				<li class="page-scroll dropdown">
