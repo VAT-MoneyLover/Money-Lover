@@ -531,7 +531,7 @@ footer .footer-below {
     /*margin-top: 1em;*/
     padding: 0 2em 0 2em;
 }
-.bg-content a{
+.bg-content .list-group-item a{
     color: #333;
 }
 /*------#header-------*/
@@ -618,4 +618,34 @@ span.value{
 .glyphicon-pencil, .glyphicon-trash{
     margin: 15px 0px 15px 15px;
     float: right;
+}
+
+/*========User=========*/
+/* div.outerAva{
+    width: 30%;
+    overflow: hidden;
+    display: inline-block;
+    float: left;
+    margin: 2em 0 0 0;
+} */
+div#avatar
+{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: 2em;
+}
+
+#avatar .avatar {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 100%;
+    width: auto;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
 }

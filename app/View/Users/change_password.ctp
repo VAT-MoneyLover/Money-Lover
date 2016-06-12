@@ -8,8 +8,10 @@
 			<?php echo $this->Form->create('User'); ?>
 			<div class="form-group">
 				<?php
-					echo $this->Form->input('old_password', array('label'=> false , 'class'=>'form-control', 'placeholder'=>'Old Password..'));
-					echo $this->Form->input('new_password', array('label'=> false , 'class'=>'form-control', 'placeholder'=>'New Password..'));
+					if ($user['User']['password']!='') {
+						echo $this->Form->input('old_password', array('label'=> false , 'class'=>'form-control', 'placeholder'=>'Old Password..', 'type'=>'Password'));
+					}
+					echo $this->Form->input('new_password', array('label'=> false , 'class'=>'form-control', 'placeholder'=>'New Password..', 'type'=>'Password'));
 				    echo $this->form->button('Change Password', array('type'=>'submit','class'=>'btn'));
 				?>
 			</div>

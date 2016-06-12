@@ -131,7 +131,7 @@ class UsersController extends AppController {
 					# code...
 				if ($this->User->saveField('password', $newData['User']['new_password'])) {
 					$this->Flash->success(__('The user has been saved.'));
-					return $this->redirect(array('action' => 'index'));
+					return $this->redirect(BASE_PATH);
 				} else {
 					$this->Flash->error(__('The user could not be saved. Please, try again.'));
 				}
@@ -142,6 +142,8 @@ class UsersController extends AppController {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 			$this->request->data = $this->User->find('first', $options);
 		}
+		$data = $this->User->findById($id);
+		$this->set('user', $data);
 	}
 	public function avatar($id){
 		$this->layout = 'popup';
@@ -149,15 +151,16 @@ class UsersController extends AppController {
 
 			$this->User->id = $id;
 			$avatar = $this->request->data['avatar'];
-			$folderToSaveFile = APP . WEBROOT_DIR . DS . 'files' . DS;
+			$folderToSaveFile = APP . WEBROOT_DIR . DS . 'img' . DS;
 			if($this->User->findById($id)['User']['avatar']){
-				unlink($this->User->findById($id)['User']['avatar']);
+				unlink($folderToSaveFile.$this->User->findById($id)['User']['avatar']);
 				$this->User->saveField('avatar', 0);
 			}
 			if(move_uploaded_file($avatar['tmp_name'], $folderToSaveFile. $avatar["name"])){
-				if ($this->User->saveField('avatar', $folderToSaveFile . $avatar['name'])) {
+				if ($this->User->saveField('avatar', $avatar['name'])) {
 				# code...
 					$this->Flash->set('Changed avatar successfully!');
+					$this->redirect(BASE_PATH.'users/view/'.AuthComponent::user('id'));
 				}else{
 					$this->Flash->set('Error!');
 				}
