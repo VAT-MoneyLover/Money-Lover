@@ -30,7 +30,7 @@
                 }
             }
 
-            $this->set('categories', $this->Transaction->Category->find('list', array('conditions'=>array('wallet_id'=> $id))));
+            $this->set('categories', $this->Transaction->Category->find('list', array('conditions'=>array('wallet_id'=> array($id, 0)))));
         }
 
         public function view($id)

@@ -9,8 +9,8 @@
 
     class WalletsController extends AppController {
 
-        public $components = array('Flash');
-
+        public $components = array('Flash', 'Paginator');
+        
         public function beforeFilter(){
             //$this->Auth->allow('index');
         }
@@ -70,6 +70,7 @@
             $this->set('wallet', $data);
             $this->Wallet->User->id = AuthComponent::user('id');
             $this->Wallet->User->saveField('current_wallet_id', $data['Wallet']['id']);
+            $this->set('categories', $this->Wallet->Category->find('all'));
         }
 
         public function edit($id){
@@ -99,10 +100,37 @@
             }
         }
 
-        public function transferMoney(){
+        public function transferMoney($id){
+            $this->layout = 'popup'; 
+            $this->Wallet->id = $id;
+            $this->set('wallets', $this->Wallet->find('list', array('conditions'=>array('user_id'=>AuthComponent::user('id'), 'id !='=>AuthComponent::user('current_wallet_id')))));
+            $this->set('wallet', $this->Wallet->findById($id));
+            $this->set('categories', $this->Wallet->Category->find('list', array('conditions'=>array('wallet_id'=> array($id, '0'), 'type'=>0))));
 
-
-            $this->set('categories', $this->Category->find('list', array('conditions'=>array('wallet_id'=> $id))));
-
+            if ($this->request->is('post')) {
+                // Set at 'destination wallet'
+                $data = array(
+                    // destination wallet
+                    array(
+                    'category_id'=> 5, // gift category's id. 
+                    'wallet_id'=> $this->request->data['Transaction']['wallet_id'],
+                    'user_id'=> AuthComponent::user('id'),
+                    'cost' => $this->request->data['Transaction']['cost'],
+                    'note' => 'Transfer from wallet '.$this->Wallet->findById($id)['Wallet']['name'],
+                    'date' => $this->request->data['Transaction']['date']
+                    ),
+                    //from wallet
+                    array(
+                    'category_id'=> $this->request->data['Transaction']['category_id'],
+                    'wallet_id'=> AuthComponent::user('current_wallet_id'),
+                    'user_id'=> AuthComponent::user('id'),
+                    'cost' => $this->request->data['Transaction']['cost'],
+                    'note' => $this->request->data['Transaction']['note'],
+                    'date' => $this->request->data['Transaction']['date']
+                    ));
+                if ($this->Wallet->Transaction->saveMany($data, array('deep' => true))) {
+                    $this->redirect(BASE_PATH);
+                }
+            }
         }
     }

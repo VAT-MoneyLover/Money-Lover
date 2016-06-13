@@ -25,6 +25,7 @@
 						<?php if(AuthComponent::user('current_wallet_id')){?>
 						<li><?php echo $this->HTML->link('View Wallet by Category', array('controller'=>'wallets','action'=>'view', AuthComponent::user('current_wallet_id'))); ?></li>
 						<li><?php echo $this->HTML->link('View Wallet by Transaction', array('controller'=>'wallets','action'=>'viewDate', AuthComponent::user('current_wallet_id'))); ?></li>
+						<li><?php echo $this->HTML->link('Transfer money', array('controller'=>'wallets','action'=>'transferMoney', AuthComponent::user('current_wallet_id'))); ?></li>
 						<?php 
 							}
 							

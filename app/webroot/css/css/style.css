@@ -244,7 +244,7 @@ footer a:hover, footer a:focus { color: #fff; border-bottom: 1px dotted #fff; }
 	-webkit-box-shadow: none !important;
 	-moz-box-shadow: none !important;
 	box-shadow: none !important;
-	margin-top: 1em;
+	margin-bottom: 1em;
 }
 textarea.form-control , .form-control{
 	height: 3em;

@@ -5,7 +5,7 @@
 	div.linkAction{
 		padding: 1em;
 		display: inline-block;
-		font-size: 13pt;
+		font-size: 12pt;
 	}
 	div .glyphicon{
 		color: #888;

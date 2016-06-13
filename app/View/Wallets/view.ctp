@@ -57,33 +57,42 @@
     <!-- #body -->
     <div id="body" >      
         <?php
-            foreach ($wallet['Category'] as $Category) {
+
+            foreach ($categories as $Category) {
+                $printCate = false;
         ?>
                         <div class="bg-content transaction">
                             <ul class="list-group">
-                                <li class="list-group-item">
-                                    <span class="categoryName"><?php echo $Category['name']; ?></span>
+        <?php    
+                foreach ($wallet['Transaction'] as $Transaction) {
+                    if ($Transaction['category_id'] == $Category['Category']['id']) {
+                        if(!$printCate){
+        ?>              
+                               <li class="list-group-item">
+                                    <span class="categoryName"><?php echo $Category['Category']['name']; ?></span>
                                     <span></span>
                                 </li>
         <?php
-                foreach ($wallet['Transaction'] as $Transaction) {
-                    if ($Transaction['category_id'] == $Category['id']) {
-        ?>                      
+                            $printCate = true;
+                        }
+        ?>   
                                 <li class="list-group-item">
                                     <a href="<?php echo BASE_PATH.'transactions/edit/'.$Transaction['id'];?>" class="block">
                                         <span class="date "><?php echo $Transaction['date']; ?></span>
-                                        <span class="cost <?php  if($Category['type']==0) echo 'expense'; else echo'income'; ?>"><?php echo $Transaction['cost']; ?></span>
+                                        <span class="cost <?php  if($Category['Category']['type']==0) echo 'expense'; else echo'income'; ?>"><?php echo $Transaction['cost']; ?></span>
                                     </a>
                                 </li>
+                            
         <?php
                     }
                 }
         ?>
-
                             </ul>
                         </div>
+                            
         <?php    
             }
+            
         ?>
     </div>
 </div>

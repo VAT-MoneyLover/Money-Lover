@@ -621,13 +621,7 @@ span.value{
 }
 
 /*========User=========*/
-/* div.outerAva{
-    width: 30%;
-    overflow: hidden;
-    display: inline-block;
-    float: left;
-    margin: 2em 0 0 0;
-} */
+
 div#avatar
 {
     position: relative;
