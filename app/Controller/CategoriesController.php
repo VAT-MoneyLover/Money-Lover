@@ -20,7 +20,8 @@ class CategoriesController extends AppController {
  *
  * @return void
  */
-	public function index() {
+	public function index($id) {
+		$this->layout = 'main';
 		$this->Category->recursive = 0;
 		$this->set('categories', $this->Paginator->paginate());
 	}
@@ -52,7 +53,7 @@ class CategoriesController extends AppController {
 			$this->Category->data['Category']['user_id'] = AuthComponent::user('id');
 			if ($this->Category->save($this->request->data)) {
 				$this->Flash->success(__('The category has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(BASE_PATH.'transactions/add/'.AuthComponent::user('current_wallet_id'));
 			} else {
 				$this->Flash->error(__('The category could not be saved. Please, try again.'));
 			}

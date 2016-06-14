@@ -141,6 +141,6 @@
 
             $this->Wallet->id = $id;
             $this->set('wallet', $this->Wallet->findById($id));
-            
+            $this->set('categories', $this->Wallet->Category->find('all'));
         }
     }

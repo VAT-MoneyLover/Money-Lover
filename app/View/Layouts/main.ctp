@@ -8,7 +8,8 @@
 		'css/material.min.css',
 		'bootstrap/css/bootstrap_2.min.css',
 		'font-awesome/css/font-awesome.min.css',
-		'css/mainStyle.css'
+		'css/mainStyle.css',
+		'chart/chart.css'
 		));
 		?>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">

@@ -34,6 +34,9 @@
 						?>
 					</ul>
 				</li>
+				<li>
+					<?php echo $this->HTML->link('Categories', array('controller'=>'categories','action'=>'index', AuthComponent::user('current_wallet_id'))); ?>
+				</li>
 				<li class="page-scroll dropdown">
 					<a href=""class="dropdown-toggle" data-toggle="dropdown"><?php echo AuthComponent::user('email'); ?></a>
 					<ul class="dropdown-menu">
