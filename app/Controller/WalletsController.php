@@ -99,7 +99,7 @@
                 }
             }
         }
-
+// Transfer money function
         public function transferMoney($id){
             $this->layout = 'popup'; 
             $this->Wallet->id = $id;
@@ -132,5 +132,15 @@
                     $this->redirect(BASE_PATH);
                 }
             }
+        }
+        // end function
+
+// Monthly report function
+        public function monthlyReport($id){
+            $this->layout = 'main';
+
+            $this->Wallet->id = $id;
+            $this->set('wallet', $this->Wallet->findById($id));
+            
         }
     }
