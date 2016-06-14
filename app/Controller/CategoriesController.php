@@ -71,10 +71,12 @@ class CategoriesController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->layout = 'popup';
 		if (!$this->Category->exists($id)) {
 			throw new NotFoundException(__('Invalid category'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
+			$this->Category->id = $id;
 			if ($this->Category->save($this->request->data)) {
 				$this->Flash->success(__('The category has been saved.'));
 				return $this->redirect(array('action' => 'index'));
@@ -88,6 +90,7 @@ class CategoriesController extends AppController {
 		$wallets = $this->Category->Wallet->find('list');
 		$users = $this->Category->User->find('list');
 		$this->set(compact('wallets', 'users'));
+		$this->set('category', $this->Category->findById($id));
 	}
 
 /**
