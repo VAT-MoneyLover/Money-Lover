@@ -47,10 +47,12 @@ $categoriesController = new CategoriesController;
 		</div>
 	</div>
 	<div id="body">
-
+	<?php 
+		
+	?>
 		<div id="expense" class="bg-content transaction">
 			<dl>
-				<dt><span class="">Expense in <?php echo date('M Y', strtotime($Transaction['date']))?></span></dt>
+				<dt><span class="">Expense in <?php echo date('M Y')?></span></dt>
 
 				<?php
 				foreach ($categories as $Category) {
@@ -76,7 +78,7 @@ $categoriesController = new CategoriesController;
 		</div>
 		<div id="income" class="bg-content transaction">
 			<dl>
-				<dt><span class="">Income in <?php echo date('M Y', strtotime($Transaction['date']))?></span></dt>
+				<dt><span class="">Income in <?php echo date('M Y')?></span></dt>
 
 				<?php
 				foreach ($categories as $Category) {

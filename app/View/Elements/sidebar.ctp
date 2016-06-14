@@ -31,7 +31,7 @@
 						<li><?php echo $this->HTML->link('View Wallet by Category', array('controller'=>'wallets','action'=>'view', $user['User']['current_wallet_id'])); ?></li>
 						<li><?php echo $this->HTML->link('View Wallet by Transaction', array('controller'=>'wallets','action'=>'viewDate', $user['User']['current_wallet_id'])); ?></li>
 						<li><?php echo $this->HTML->link('Transfer money', array('controller'=>'wallets','action'=>'transferMoney', $user['User']['current_wallet_id'])); ?></li>
-						<li><?php echo $this->HTML->link('Monthly report', array('controller'=>'wallets','action'=>'monthlyReport', )); ?></li>
+						<li><?php echo $this->HTML->link('Monthly report', array('controller'=>'wallets','action'=>'monthlyReport', $user['User']['current_wallet_id'])); ?></li>
 						
 						<?php 
 							}

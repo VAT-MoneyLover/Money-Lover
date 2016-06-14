@@ -20,7 +20,10 @@
   </head>
 
   <body>
-
+    <!-- sidebar -->
+    <?php 
+      echo $this->element('sidebar');
+     ?>
     <!-- content -->
     <div class="">
       <?php 
