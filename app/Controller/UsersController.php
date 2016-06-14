@@ -36,7 +36,10 @@ class UsersController extends AppController {
 		$this->Auth->allow('register', 'google_login', 'googlelogin', 'forgotPassword' );
 		parent::beforeFilter();
 	}
-
+	public function getUserById($id){
+		$data = $this->User->findById($id);
+		return $data;
+	}
 	public function index() {
 		//$this->layout = 'login';
 		$this->User->recursive = 0;

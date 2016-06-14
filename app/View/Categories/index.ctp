@@ -1,7 +1,9 @@
-<h2 class="allWallets">Categories</h2>
-<?php
-
+<?php 
+    App:: import('Controller', array('Users'));
+    $userController = new UsersController;
+    $user = $userController->getUserById(AuthComponent::user('id'));
 ?>
+<h2 class="allWallets">Categories</h2>
 <!-- Content -->
 <div class="col-sm-2 col-md-3"></div>
 <div class="col-xs-12 col-sm-8 col-md-6">
@@ -24,7 +26,7 @@
             foreach ($categories as $category) {
                 if (
                     ($category['Category']['wallet_id'] == 0 && $category['Category']['user_id'] == 0) || 
-                    ($category['Category']['user_id'] == AuthComponent::user('id') && $category['Category']['wallet_id'] == AuthComponent::user('current_wallet_id'))
+                    ($category['Category']['user_id'] == AuthComponent::user('id') && $category['Category']['wallet_id'] == $user['User']['current_wallet_id'])
                     ) {
                     # code...
                 

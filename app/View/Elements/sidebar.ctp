@@ -1,3 +1,8 @@
+<?php 
+	App:: import('Controller', array('Users'));
+	$userController = new UsersController;
+	$user = $userController->getUserById(AuthComponent::user('id'));
+?>
 <!-- Navigation -->
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
@@ -23,10 +28,10 @@
 					<ul class="dropdown-menu">
 						<li><?php echo $this->HTML->link('List Wallet', array('controller'=>'wallets','action'=>'viewList')); ?></li>
 						<?php if(AuthComponent::user('current_wallet_id')){?>
-						<li><?php echo $this->HTML->link('View Wallet by Category', array('controller'=>'wallets','action'=>'view', AuthComponent::user('current_wallet_id'))); ?></li>
-						<li><?php echo $this->HTML->link('View Wallet by Transaction', array('controller'=>'wallets','action'=>'viewDate', AuthComponent::user('current_wallet_id'))); ?></li>
-						<li><?php echo $this->HTML->link('Transfer money', array('controller'=>'wallets','action'=>'transferMoney', AuthComponent::user('current_wallet_id'))); ?></li>
-						<li><?php echo $this->HTML->link('Monthly report', array('controller'=>'wallets','action'=>'monthlyReport', AuthComponent::user('current_wallet_id'))); ?></li>
+						<li><?php echo $this->HTML->link('View Wallet by Category', array('controller'=>'wallets','action'=>'view', $user['User']['current_wallet_id'])); ?></li>
+						<li><?php echo $this->HTML->link('View Wallet by Transaction', array('controller'=>'wallets','action'=>'viewDate', $user['User']['current_wallet_id'])); ?></li>
+						<li><?php echo $this->HTML->link('Transfer money', array('controller'=>'wallets','action'=>'transferMoney', $user['User']['current_wallet_id'])); ?></li>
+						<li><?php echo $this->HTML->link('Monthly report', array('controller'=>'wallets','action'=>'monthlyReport', )); ?></li>
 						
 						<?php 
 							}
@@ -35,7 +40,7 @@
 					</ul>
 				</li>
 				<li>
-					<?php echo $this->HTML->link('Categories', array('controller'=>'categories','action'=>'index', AuthComponent::user('current_wallet_id'))); ?>
+					<?php echo $this->HTML->link('Categories', array('controller'=>'categories','action'=>'index', $user['User']['current_wallet_id'])); ?>
 				</li>
 				<li class="page-scroll dropdown">
 					<a href=""class="dropdown-toggle" data-toggle="dropdown"><?php echo AuthComponent::user('email'); ?></a>
